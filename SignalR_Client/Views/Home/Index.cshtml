@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+@section Scripts
+    {
+    <script type="text/javascript">
+
+
+        $(document).ready(() => {
+
+            var connection = new signalR.HubConnectionBuilder().withAutomaticReconnect([1000, 2000, 3000, 10000]).withUrl("https://localhost:44316/MyHub").build(); @*Server Project:API*@
+
+                function statusShow() {
+                    $("#conStatus").text(connection.connectionState);
+                }
+
+            statusShow();
+
+            connection.start().then(() => {
+                statusShow();
+                $("#loading").hide();
+            }).catch((err) => { console.log(err) });
+
+            $("#btnSave").click(() => {
+                connection.invoke("SendName", $("#txtName").val()).catch((err) => { console.log(err) });
+            })
+
+            connection.on("ReceiveName", (name) => {
+                //console.log(name);
+                $("#namesList").append(`<li class="list-group-item">${name}</li>`);
+            })
+
+            connection.onreconnecting(err => {
+                $("#loading").show();
+                statusShow();
+                console.log(err);
+            })
+
+            connection.onreconnected(err => {
+                $("#loading").hide();
+                statusShow();
+                console.log(err);
+            })
+        })
+    </script>
+    }
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <input type="text" class="form-control" id="txtName" />
+        <hr />
+        <button class="btn btn-warning" id="btnSave">İsmi Kaydet</button>
+        <div class="alert alert-info mt-2">
+            <div class="float-left">
+                Bağlantı Durumu:<strong id="conStatus"></strong>
+                ,Client Sayısı:<strong id="clientCount"></strong>
+            </div>
+            <div class="float-right">
+                <div id="loading" class="spinner-border" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-md-8 offset-2">
+        <ul class="list-group" id="namesList"></ul>
+    </div>
+</div>
