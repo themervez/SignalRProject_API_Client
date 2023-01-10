@@ -1,29 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
 @section Scripts
     {
-    <script type="text/javascript">
 
+    <script type="text/javascript">
 
         $(document).ready(() => {
 
-            var connection = new signalR.HubConnectionBuilder().withAutomaticReconnect([1000, 2000, 3000, 10000]).withUrl("https://localhost:44316/MyHub").build(); @*Server Project:API*@
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl("https://localhost:44316/MyHub")
+                .withAutomaticReconnect([1000, 2000, 3000, 10000])
+                .build();
 
-                function statusShow() {
-                    $("#conStatus").text(connection.connectionState);
-                }
+            function statusShow() {
+                $("#conStatus").text(connection.connectionState);
+            }
 
             statusShow();
 
             connection.start().then(() => {
                 statusShow();
                 $("#loading").hide();
+                connection.invoke("GetNames");
             }).catch((err) => { console.log(err) });
 
             $("#btnSave").click(() => {
-                connection.invoke("SendName", $("#txtName").val()).catch((err) => { console.log(err) });
+                connection.invoke("SendName", $("#txtName").val())
+                    .catch((err) => { console.log(err) });
             })
 
             connection.on("ReceiveName", (name) => {
@@ -42,7 +49,42 @@
                 statusShow();
                 console.log(err);
             })
+
+            connection.on("ReceiveClientCount", (ClientCount) => {
+                $("#clientCount").text(ClientCount);
+            })
+
+            connection.on("Notify", (countText) => {
+                $("#notify").html(`<div class="alert alert-success">${countText}</div>`);
+            })
+
+            connection.on("Error", (errorText) => {
+                alert(errorText);
+            })
+
+            //Yeni client için kendinden önce yapılan işlemlerin gösterilmesi
+            connection.on("ReceiveNames", (Names) => {
+                $("#namesList").empty();
+                Names.forEach((item, index) => {
+                    $("#namesList").append(`<li class="list-group-item">${item}</li>`);
+                })
+            })
+
+            $("#btnroomname").click(() => {
+                let name = $("#txtName").val();
+                let roomname = $("input[type=radio]:checked").val();
+
+                if (roomname == null) {
+                    alert("Lütfen şehir seçimi yapınız");
+                }
+                else {
+                    connection.invoke("SendNameByGroup", name, roomname).catch((err) => {
+                        console.log(err);
+                    })
+                }
+            })
         })
+
     </script>
     }
 <div class="row">
@@ -50,6 +92,7 @@
         <input type="text" class="form-control" id="txtName" />
         <hr />
         <button class="btn btn-warning" id="btnSave">İsmi Kaydet</button>
+        <button class="btn btn-primary" id="btnroomname">Odaya Kişi Ekle</button>
         <div class="alert alert-info mt-2">
             <div class="float-left">
                 Bağlantı Durumu:<strong id="conStatus"></strong>
@@ -62,8 +105,21 @@
             </div>
             <div class="clearfix"></div>
         </div>
+        <div id="notify"></div>
     </div>
     <div class="col-md-8 offset-2">
         <ul class="list-group" id="namesList"></ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="roomgroup" value="Mersin" />
+            <label class="form-check-label">Mersin Grubu</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="roomgroup" value="Adana" />
+            <label class="form-check-label">Adana Grubu</label>
+        </div>
     </div>
 </div>
