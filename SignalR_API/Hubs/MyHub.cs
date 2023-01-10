@@ -55,7 +55,7 @@ namespace SignalR_API.Hubs
             {
                 room.Users.Add(new User
                 {
-                   Name = name
+                    Name = name
                 });
             }
             else
@@ -81,6 +81,14 @@ namespace SignalR_API.Hubs
             });
 
             await Clients.All.SendAsync("ReceiveNamesByGroup", rooms);
+        }
+        public async Task AddToGroup(string roomName)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, roomName);
+        }
+        public async Task RemoveFromGroup(string roomName)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
         }
     }
 }

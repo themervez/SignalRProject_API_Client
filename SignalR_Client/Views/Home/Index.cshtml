@@ -83,6 +83,29 @@
                     })
                 }
             })
+
+            connection.on("ReceiveMessageByGroup", (name, roomId) => {
+                let listName;
+                if (roomId == 1) {
+                    listName = "MersinGroupList"
+                }
+                else {
+                    listName = "AdanaGroupList"
+                }
+                $(`#${listName}`).append(`<li class="list-group-item">${name}</li>`);
+            })
+
+            $("input[type=radio]").change(() => {
+                let value = $(`input[type=radio]:checked`).val();
+                if (value == "Mersin") {
+                    connection.invoke("AddToGroup", value);
+                    connection.invoke("RemoveFromGroup", Adana);
+                }
+                else {
+                    connection.invoke("AddToGroup", value);
+                    connection.invoke("RemoveFromGroup", Mersin);
+                }
+            })
         })
 
     </script>
@@ -120,6 +143,20 @@
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="roomgroup" value="Adana" />
             <label class="form-check-label">Adana Grubu</label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="col-md-8 offset-2">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Mersin Grubu</h5>
+                <ul class="list-group" id="MersinGroupList"></ul>
+            </div>
+            <div class="col-md-4 offset-2">
+                <h5>Adana Grubu</h5>
+                <ul class="list-group" id="AdanaGroupList"></ul>
+            </div>
         </div>
     </div>
 </div>
