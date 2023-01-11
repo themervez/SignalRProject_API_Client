@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XNAYzwRGG/06J4mkDJPxNI/iDKhuUcUf6JkCLd0H9I0Bt0JlTlV9ZzshT6Xa82sgVVJNAoDPxDqJil5Ipvds4w==",
+  "dgSpecHash": "usyT9r948aOGV25zAXF6BQEdXUmuP4jYBoKFosbAOgQCHpaF/sP2BCvAd6IRMJpI3YGBJUJG8OASgg0oFTZWWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalR_API\\SignalR_API\\SignalR_API.csproj",
+  "projectFilePath": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalRProject_API_Client\\SignalR_API\\SignalR_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Merve\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Merve\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",

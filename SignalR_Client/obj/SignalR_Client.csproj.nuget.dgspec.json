@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalR_API\\SignalR_Client\\SignalR_Client.csproj": {}
+    "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalRProject_API_Client\\SignalR_Client\\SignalR_Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalR_API\\SignalR_Client\\SignalR_Client.csproj": {
+    "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalRProject_API_Client\\SignalR_Client\\SignalR_Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalR_API\\SignalR_Client\\SignalR_Client.csproj",
+        "projectUniqueName": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalRProject_API_Client\\SignalR_Client\\SignalR_Client.csproj",
         "projectName": "SignalR_Client",
-        "projectPath": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalR_API\\SignalR_Client\\SignalR_Client.csproj",
+        "projectPath": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalRProject_API_Client\\SignalR_Client\\SignalR_Client.csproj",
         "packagesPath": "C:\\Users\\Merve\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalR_API\\SignalR_Client\\obj\\",
+        "outputPath": "C:\\Users\\Merve\\Desktop\\AKBANK EĞİTİM SERÜVENİM\\Ders Projeler\\SignalRProject_API_Client\\SignalR_Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
