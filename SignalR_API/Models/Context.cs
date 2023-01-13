@@ -7,7 +7,7 @@ namespace SignalR_API.Models
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
-        public DbSet<Room> Rooms { get; }
-        public DbSet<User> Users { get; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

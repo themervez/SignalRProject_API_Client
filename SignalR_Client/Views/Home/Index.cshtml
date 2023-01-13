@@ -99,11 +99,11 @@
                 let value = $(`input[type=radio]:checked`).val();
                 if (value == "Mersin") {
                     connection.invoke("AddToGroup", value);
-                    connection.invoke("RemoveFromGroup", Adana);
+                    connection.invoke("RemoveFromGroup", "Adana");
                 }
                 else {
                     connection.invoke("AddToGroup", value);
-                    connection.invoke("RemoveFromGroup", Mersin);
+                    connection.invoke("RemoveFromGroup", "Mersin");
                 }
             })
         })
